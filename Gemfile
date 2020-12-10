@@ -8,4 +8,6 @@ gem 'rspec'
 
 gem 'capybara' 
 
-gem 'rack-test'
+gem 'rack-test' 
+
+gem 'selenium-webdriver' 

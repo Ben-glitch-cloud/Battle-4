@@ -1,8 +1,12 @@
-require './app.rb' 
+require 'spec_helper.rb' 
 
-feature 'Testing infrastructure' do
-    scenario 'Can run app and check page content' do
-        visit('/')
-        expect(page).to have_content 'Testing infrastructure working!'
+
+describe 'Enter names', type::feature do 
+    scenario 'submitting names' do
+        visit('/') 
+        fill_in :player_one_name, with: 'Dave'
+        fill_in :player_two_name, with: 'Mittens'
+        click_button 'Submit'
+        expect(page).to have_content 'Dave vs. Mittens'
       end
 end 
