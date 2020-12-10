@@ -1,9 +1,8 @@
+require './spec/features/web_helpers.rb'
+
 feature 'Enter names' do
-    scenario 'Display players' do
-        visit('/')  
-        fill_in :player_1_name, with: 'Dave' 
-        fill_in :player_2_name, with: 'Mittens' 
-        click_button 'Submit'
+    scenario 'Display players' do 
+        sign_in_and_play  
         expect(page).to have_content 'Dave vs. Mittens'
     end
 end 
