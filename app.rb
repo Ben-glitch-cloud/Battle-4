@@ -1,5 +1,7 @@
 require 'sinatra/base' 
 
+require 'players.rb'
+
 class Battle < Sinatra::Base    
     
     set :session_secret, 'super secret'
@@ -10,15 +12,21 @@ class Battle < Sinatra::Base
         erb :index
     end  
 
+    post '/names' do  
+        
+        $player_1_name = Player.new(params[:player_1_name]) 
+        $player_2_name = Player.new(params[:player_2_name]) 
+
+        redirect '/play'
+    end      
+
     get '/play' do
-        @player_1_name = session[:player_1_name]
-        @player_2_name = session[:player_2_name] 
+        @player_1_name = $player_1_name.name
+        @player_2_name = $player_2_name.name
         erb :play
     end
 
-    post '/names' do 
-        session[:player_1_name] = params[:player_1_name] 
-        session[:player_2_name] = params[:player_2_name]
-        redirect '/play'
-    end 
+    get '/fire' do 
+        erb :fire
+    end  
 end 

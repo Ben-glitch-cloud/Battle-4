@@ -1,18 +1,25 @@
 require './spec/features/web_helpers.rb'
 
-feature 'Enter names' do
+feature 'Enter names' do 
     scenario 'Display players' do 
-        sign_in_and_play  
+        sign_in_the_play  
         expect(page).to have_content 'Dave vs. Mittens'
     end
 end 
 
 feature 'Hit points' do
     scenario 'display hit points from player two' do
-        visit('/')   
-        fill_in :player_1_name, with: 'Dave' 
-        fill_in :player_2_name, with: 'Mittens' 
-        click_button 'Submit'
+        sign_in_the_play
         expect(page).to have_content 'Mittens 60 points' 
     end
-end
+end  
+
+feature 'attack player 2' do 
+    scenario 'should confirm attack' do  
+        sign_in_the_play
+        click_button 'fire'
+        expect(page).to have_content 'Hite'
+    end 
+end 
+
+
