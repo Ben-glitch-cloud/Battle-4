@@ -1,9 +1,18 @@
-class Player 
+require 'sinatra/base'
 
-    attr_reader :name 
+class Player
 
-    def initialize(name)
-        @name = name 
+    attr_reader :name
+    attr_reader :health
+    DEFAULT_HIT_POINTS = 60
+
+    def initialize(name, health = DEFAULT_HIT_POINTS)
+        @name = name
+        @health = health
     end   
+
+    def attack
+        @health -= 10
+    end
 
 end 

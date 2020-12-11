@@ -1,6 +1,5 @@
 require 'sinatra/base' 
-
-require 'players.rb'
+require File.join(File.dirname(__FILE__), '/lib/players.rb') 
 
 class Battle < Sinatra::Base    
     
@@ -22,11 +21,14 @@ class Battle < Sinatra::Base
 
     get '/play' do
         @player_1_name = $player_1_name.name
-        @player_2_name = $player_2_name.name
+        @player_2_name = $player_2_nam.name
         erb :play
     end
 
     get '/fire' do 
+        @player_2 = $player_2
+        @player_1 = $player_1
+        @player_2.attack
         erb :fire
     end  
 end 

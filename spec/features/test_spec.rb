@@ -20,6 +20,14 @@ feature 'attack player 2' do
         click_button 'fire'
         expect(page).to have_content 'Hite'
     end 
+
+    scenario 'reduce player 2 HP by 10' do
+        sign_in_the_play
+        player = Player.new("Ben")
+        click_button 'fire'
+        expect { player.attack }.to change { player.health }.by(-10)
+    end
 end 
+
 
 
